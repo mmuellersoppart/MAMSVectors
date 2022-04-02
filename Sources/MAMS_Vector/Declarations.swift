@@ -1,12 +1,3 @@
-import CoreGraphics
-
-public struct MAMS_Vector {
-    public private(set) var text = "Hello, World!"
-
-    public init() {
-    }
-}
-
 public struct Vector2D {
     let x: Double
     let y: Double
