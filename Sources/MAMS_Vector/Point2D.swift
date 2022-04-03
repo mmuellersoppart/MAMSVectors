@@ -12,6 +12,16 @@ public struct Point2D {
     let y: Double
 }
 
+extension Point2D {
+    func distance(to point: Point2D) -> Double {
+        let xDist = point.x - x
+        let yDist = point.y - y
+        
+        return (xDist * xDist) + (yDist * yDist)
+    }
+}
+
+// operators
 
 extension Point2D : Equatable {
     public static func +(lhs: Point2D, rhs: Point2D) -> Point2D {

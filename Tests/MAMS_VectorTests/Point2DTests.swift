@@ -10,14 +10,33 @@ import XCTest
 
 final class Point2DTests: XCTestCase {
     func testAddition() throws {
-       
-            let pt1 = Point2D(x: 1.0, y: 2.0)
-            let pt2 = Point2D(x: 1.0, y: 2.0)
-            
-            let expected = Point2D(x: 2.0, y: 4.0)
-            let actual = pt1 + pt2
-            
-            XCTAssertEqual(expected, actual)
-        }
+        let pt1 = Point2D(x: 1.0, y: 2.0)
+        let pt2 = Point2D(x: 1.0, y: 2.0)
+
+        let expected = Point2D(x: 2.0, y: 4.0)
+        let actual = pt1 + pt2
+
+        XCTAssertEqual(expected, actual)
+    }
+
+    func testDistance() throws  {
+        let pt1 = Point2D(x: .zero, y: .zero)
+        let pt2 = Point2D(x: 4, y: 5)
+
+        let expected = 16.0 + 25.0
+        let actual = pt1.distance(to: pt2)
+
+        XCTAssertEqual(expected, actual)
+    }
+
+    func testDistanceNoDistance() throws {
+        let pt1 = Point2D(x: .zero, y: .zero)
+        let pt2 = Point2D(x: .zero, y: .zero)
+
+        let expected = 0.0
+        let actual = pt1.distance(to: pt2)
+
+        XCTAssertEqual(expected, actual)
+    }
 }
 
