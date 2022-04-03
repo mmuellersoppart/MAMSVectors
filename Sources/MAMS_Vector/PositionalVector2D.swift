@@ -23,19 +23,29 @@ extension PositionalVector2D {
     /// - Parameter xTarget: x value in a cartesian plane
     func intercept(x xTarget: Double) -> Point2D? {
 
-        // determine distance from origin to x
+        // determine distance from vector start to x
         let distance = xTarget - origin.x
 
         let scaleToX = distance / vector.x
 
-        // make sure the vector will ever hit the x value
+        // make sure the vector hits the target
         guard scaleToX >= .zero else { return nil }
 
         return Point2D(x: xTarget, y: origin.y + (scaleToX * vector.y))
     }
 
     func intercept(y yTarget: Double) -> Point2D? {
-        return nil
+        
+        // determine distance from vector start to target
+        let distance = yTarget - origin.y
+        
+        // how much the vector needs to be scaled to reach target
+        let scaleToY = distance / vector.y
+        
+        // make sure
+        guard scaleToY >= .zero else { return nil }
+        
+        return Point2D(x: origin.x + (scaleToY * vector.x), y: yTarget)
     }
 }
 
