@@ -4,6 +4,11 @@
 
 import Foundation
 
+public struct PositionalVector2D {
+    let origin: Point2D
+    let vector: Vector2D
+}
+
 
 extension PositionalVector2D : Equatable {
     public static func ==(lhs: PositionalVector2D, rhs: PositionalVector2D) -> Bool {
@@ -30,6 +35,13 @@ extension PositionalVector2D {
     }
 
     func intercept(y yTarget: Double) -> Point2D? {
+        return nil
+    }
+}
 
+extension PositionalVector2D {
+    init(point: Point2D, vector: Vector2D) {
+        self.vector = vector
+        origin = point
     }
 }

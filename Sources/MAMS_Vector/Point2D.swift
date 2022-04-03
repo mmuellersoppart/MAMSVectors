@@ -7,6 +7,11 @@
 
 import Foundation
 
+public struct Point2D {
+    let x: Double
+    let y: Double
+}
+
 
 extension Point2D : Equatable {
     public static func +(lhs: Point2D, rhs: Point2D) -> Point2D {
