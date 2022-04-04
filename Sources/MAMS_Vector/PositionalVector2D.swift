@@ -7,6 +7,10 @@ import Foundation
 public struct PositionalVector2D {
     let origin: Point2D
     let vector: Vector2D
+
+    var tip: Point2D {
+        Point2D(x: origin.x + vector.x, y: origin.y + vector.y)
+    }
 }
 
 
