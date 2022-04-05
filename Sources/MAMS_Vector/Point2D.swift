@@ -15,6 +15,11 @@ public struct Point2D {
     public var asCGPoint: CGPoint {
         CGPoint(x: x, y: y)
     }
+
+    public init(x: Double, y: Double) {
+        self.x = x
+        self.y = y
+    }
 }
 
 extension Point2D {

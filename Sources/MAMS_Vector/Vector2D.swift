@@ -12,6 +12,11 @@ public struct Vector2D {
     public var asCGVector: CGVector {
         CGVector(dx: x, dy: y)
     }
+
+    public init(x: Double, y: Double) {
+        self.x = x
+        self.y = y
+    }
 }
 
 extension Vector2D : Equatable {

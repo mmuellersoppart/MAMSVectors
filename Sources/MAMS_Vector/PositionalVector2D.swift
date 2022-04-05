@@ -13,6 +13,18 @@ public struct PositionalVector2D {
     }
 }
 
+extension PositionalVector2D {
+    public init(originX: Double, originY: Double, vectorX: Double, vectorY: Double) {
+        origin = Point2D(x: originX, y: originY)
+        vector = Vector2D(x: vectorX, y: vectorY)
+    }
+
+    public init(point: Point2D, vector: Vector2D) {
+        origin = point
+        self.vector = vector
+    }
+
+}
 
 extension PositionalVector2D : Equatable {
     public static func ==(lhs: PositionalVector2D, rhs: PositionalVector2D) -> Bool {
@@ -50,12 +62,5 @@ extension PositionalVector2D {
         guard scaleToY >= .zero else { return nil }
         
         return Point2D(x: origin.x + (scaleToY * vector.x), y: yTarget)
-    }
-}
-
-extension PositionalVector2D {
-    init(point: Point2D, vector: Vector2D) {
-        self.vector = vector
-        origin = point
     }
 }
