@@ -5,8 +5,8 @@
 import Foundation
 
 public struct PositionalVector2D {
-    let origin: Point2D
-    let vector: Vector2D
+    public let origin: Point2D
+    public let vector: Vector2D
 
     public var tip: Point2D {
         Point2D(x: origin.x + vector.x, y: origin.y + vector.y)
@@ -25,7 +25,7 @@ extension PositionalVector2D {
 
     /// Find when the position vector intercepts the given x value
     /// - Parameter xTarget: x value in a cartesian plane
-    func intercept(x xTarget: Double) -> Point2D? {
+    public func intercept(x xTarget: Double) -> Point2D? {
 
         // determine distance from vector start to x
         let distance = xTarget - origin.x
@@ -38,7 +38,7 @@ extension PositionalVector2D {
         return Point2D(x: xTarget, y: origin.y + (scaleToX * vector.y))
     }
 
-    func intercept(y yTarget: Double) -> Point2D? {
+    public func intercept(y yTarget: Double) -> Point2D? {
         
         // determine distance from vector start to target
         let distance = yTarget - origin.y
