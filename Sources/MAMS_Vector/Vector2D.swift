@@ -7,6 +7,10 @@ import Foundation
 public struct Vector2D {
     let x: Double
     let y: Double
+
+    public var asCGVector: CGVector {
+        CGVector(dx: x, dy: y)
+    }
 }
 
 extension Vector2D : Equatable {

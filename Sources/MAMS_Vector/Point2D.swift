@@ -10,6 +10,10 @@ import Foundation
 public struct Point2D {
     let x: Double
     let y: Double
+
+    public var asCGPoint: CGPoint {
+        CGPoint(x: x, y: y)
+    }
 }
 
 extension Point2D {
