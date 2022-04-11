@@ -11,8 +11,18 @@ public struct PositionalVector2D {
     public var tip: Point2D {
         Point2D(x: origin.x + vector.x, y: origin.y + vector.y)
     }
+
+    public var perpendicular: PositionalVector2D {
+        PositionalVector2D(originX: origin.x, originY: origin.y, vectorX: vector.y, vectorY: vector.x)
+    }
+
+    public var magnitude: Double {
+        vector.magnitude
+    }
+
 }
 
+// initializers
 extension PositionalVector2D {
     public init(originX: Double, originY: Double, vectorX: Double, vectorY: Double) {
         origin = Point2D(x: originX, y: originY)
@@ -23,9 +33,9 @@ extension PositionalVector2D {
         origin = point
         self.vector = vector
     }
-
 }
 
+// Operators, only PositionalVectors
 extension PositionalVector2D : Equatable {
     public static func ==(lhs: PositionalVector2D, rhs: PositionalVector2D) -> Bool {
         (lhs.origin == rhs.origin) && (rhs.vector == lhs.vector)
@@ -33,6 +43,7 @@ extension PositionalVector2D : Equatable {
 }
 
 
+// Functions
 extension PositionalVector2D {
 
     /// Find when the position vector intercepts the given x value
