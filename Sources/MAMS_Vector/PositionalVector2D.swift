@@ -5,8 +5,8 @@
 import Foundation
 
 public struct PositionalVector2D {
-    public let origin: Point2D
-    public let vector: Vector2D
+    public var origin: Point2D
+    public var vector: Vector2D
 
     public var tip: Point2D {
         Point2D(x: origin.x + vector.x, y: origin.y + vector.y)
