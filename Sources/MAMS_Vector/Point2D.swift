@@ -9,8 +9,8 @@ import Foundation
 import CoreGraphics
 
 public struct Point2D {
-    public let x: Double
-    public let y: Double
+    public var x: Double
+    public var y: Double
 
     public var asCGPoint: CGPoint {
         CGPoint(x: x, y: y)
@@ -23,11 +23,21 @@ public struct Point2D {
 }
 
 extension Point2D {
-    func distance(to point: Point2D) -> Double {
+    public func distance(to point: Point2D) -> Double {
         let xDist = point.x - x
         let yDist = point.y - y
         
         return (xDist * xDist) + (yDist * yDist)
+    }
+
+    public func copy(x: Double? = nil, y: Double? = nil) -> Point2D {
+        var newX = self.x
+        var newY = self.y
+
+        if let x = x { newX = x }
+        if let y = y { newY = y }
+
+        return Point2D(x: newX, y: newY)
     }
 }
 

@@ -38,5 +38,19 @@ final class Point2DTests: XCTestCase {
 
         XCTAssertEqual(expected, actual)
     }
+
+    func testCopy() throws {
+        let pt = Point2D(x: 1.0, y: 2.0)
+
+        let ptCopy = pt.copy()
+
+        XCTAssertEqual(pt, ptCopy)
+
+        let ptXAdjusted = pt.copy(x: 4.0)
+
+        XCTAssertEqual(pt.y, ptXAdjusted.y)
+        XCTAssertNotEqual(pt.x, ptXAdjusted.x)
+        XCTAssertEqual(4.0, ptXAdjusted.x)
+    }
 }
 

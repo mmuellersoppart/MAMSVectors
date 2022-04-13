@@ -6,7 +6,6 @@ import Foundation
 
 
 public struct PositionalVector2D {
-    //TODO: make changing these possible for functional approach
     public var origin: Point2D
     public var vector: Vector2D
 
