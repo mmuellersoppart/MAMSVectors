@@ -27,6 +27,8 @@ final class Vector2DTests: XCTestCase {
 
         XCTAssertTrue(actualX.isEqual(to: expectedXAndY, precision: 4))
         XCTAssertTrue(actualY.isEqual(to: expectedXAndY, precision: 4))
+
+        XCTAssertTrue(vec.magnitude.isEqual(to: 1.0, precision: 6))
     }
 
 }
