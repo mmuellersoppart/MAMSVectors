@@ -4,7 +4,9 @@
 
 import Foundation
 
+
 public struct PositionalVector2D {
+    //TODO: make changing these possible for functional approach
     public var origin: Point2D
     public var vector: Vector2D
 
@@ -16,6 +18,7 @@ public struct PositionalVector2D {
         PositionalVector2D(originX: origin.x, originY: origin.y, vectorX: vector.y, vectorY: vector.x)
     }
 
+    //TODO: add getter and setter for magnitude
     public var magnitude: Double {
         vector.magnitude
     }
@@ -45,6 +48,9 @@ extension PositionalVector2D : Equatable {
 
 // Functions
 extension PositionalVector2D {
+
+    //TODO: Add functional for changing magnitude, point, origin, and elements within them
+    //Copy function with variable args
 
     /// Find when the position vector intercepts the given x value
     /// - Parameter xTarget: x value in a cartesian plane
