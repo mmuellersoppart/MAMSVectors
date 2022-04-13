@@ -10,4 +10,6 @@ public func *(left: Double, right: PositionalVector2D) -> PositionalVector2D {
     PositionalVector2D(originX: right.origin.x, originY: right.origin.y, vectorX: right.vector.x * left, vectorY: right.vector.y * left)
 }
 
-// TODO: add multiplication for just vector
+public func *(left: Double, right: Vector2D) -> Vector2D {
+    Vector2D(x: right.x * left, y: right.y * left)
+}
