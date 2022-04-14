@@ -19,16 +19,10 @@ public struct Vector2D {
         }
         set(newMagnitude) {
 
-            let ratioXoverY: Double = x/y  // this can substitute a y value (ratio * y)^2 + (y)^2
-            let addOtherY: Double = pow(ratioXoverY, 2) + 1  // add lhs ((ratio)^2 * y^2) + y^2 -> ((ratio)^2 + 1) y^2
+            let newVector = self.copy(magnitude: newMagnitude)
 
-            let applySqrt: Double = sqrt(addOtherY)
-
-            let yEquals: Double = (1/applySqrt) * newMagnitude
-            let xEquals: Double = ratioXoverY * yEquals
-
-            x = xEquals
-            y = yEquals
+            x = newVector.x
+            y = newVector.y
         }
     }
 
@@ -38,6 +32,7 @@ public struct Vector2D {
     }
 }
 
+// operator
 
 extension Vector2D : Equatable {
     public static func == (lhs: Vector2D, rhs: Vector2D) -> Bool {
@@ -45,10 +40,36 @@ extension Vector2D : Equatable {
     }
 }
 
-
 extension Vector2D {
     public static func +(lhs: Vector2D, rhs: Vector2D) -> Vector2D {
         Vector2D(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    }
+}
+
+// function
+extension Vector2D {
+    public func copy(x: Double?, y: Double?) -> Vector2D {
+
+        var newX = self.x
+        var newY = self.y
+
+        if let x = x { newX = x }
+        if let y = y { newY = y }
+
+        return Vector2D(x: newX, y: newY)
+    }
+
+    public func copy(magnitude: Double) -> Vector2D {
+
+        let ratioXoverY: Double = x/y  // this can substitute a y value (ratio * y)^2 + (y)^2
+        let addOtherY: Double = pow(ratioXoverY, 2) + 1  // add lhs ((ratio)^2 * y^2) + y^2 -> ((ratio)^2 + 1) y^2
+
+        let applySqrt: Double = sqrt(addOtherY)
+
+        let newY: Double = (1/applySqrt) * magnitude
+        let newX: Double = ratioXoverY * newY
+
+        return Vector2D(x: newX, y: newY)
     }
 }
 

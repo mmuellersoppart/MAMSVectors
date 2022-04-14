@@ -19,7 +19,12 @@ public struct PositionalVector2D {
 
     //TODO: add getter and setter for magnitude
     public var magnitude: Double {
-        vector.magnitude
+        get {
+            vector.magnitude
+        }
+        set(newMagnitude) {
+            vector.magnitude = newMagnitude
+        }
     }
 
 }
@@ -50,6 +55,11 @@ extension PositionalVector2D {
 
     //TODO: Add functional for changing magnitude, point, origin, and elements within them
     //Copy function with variable args
+    public func copy(magnitude: Double) -> PositionalVector2D {
+        let origin = origin
+        let vector = vector.copy(magnitude: magnitude)
+        return PositionalVector2D(origin: origin, vector: vector)
+    }
 
     /// Find when the position vector intercepts the given x value
     /// - Parameter xTarget: x value in a cartesian plane
