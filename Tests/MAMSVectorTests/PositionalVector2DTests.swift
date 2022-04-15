@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import MAMS_Vector
+@testable import MAMSVector
 
 final class PositionalVector2DTests: XCTestCase {
     func testAddition() throws {

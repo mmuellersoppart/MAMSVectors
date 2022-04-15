@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import MAMS_Vector
+@testable import MAMSVector
 
 final class Vector2DTests: XCTestCase {
     func testMagnitude() throws {
