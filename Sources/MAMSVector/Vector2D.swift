@@ -5,7 +5,7 @@
 import Foundation
 import CoreGraphics
 
-
+/// A 2-dimensional vector (CGVector)
 public struct Vector2D {
     public var x: Double
     public var y: Double

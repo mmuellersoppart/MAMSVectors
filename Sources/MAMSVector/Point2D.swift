@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Point2D.swift
 //  
 //
 //  Created by Marlon Mueller Soppart on 4/2/22.
@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-/// A traditional 2-dimensional point in a Cartesian Plane context
+/// A traditional 2-dimensional point in a cartesian plane (CGPoint)
 public struct Point2D {
     public var x: Double
     public var y: Double
@@ -40,7 +40,7 @@ extension Point2D {
     }
     
     /// Creates a copy of a point. A user may want to change member variables and those values
-    ///  can be inputted. The unfilled values will be the same as the original Vector.
+    /// can be inputted. The unfilled values will be the same as the original Vector.
     ///
     /// - Parameters:
     ///   - x: a replacement value for x
