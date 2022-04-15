@@ -1,3 +1,3 @@
-# MAMS_Vector 
+# MAMSVector 
 
 ⬇️↘️➡️↗️⬆️↖️⬅️↙️↘️
