@@ -59,6 +59,8 @@ extension Point2D {
 }
 
 // Connection to Core Graphics
+@available(iOS 13.0, *)
+@available(macOS 10.15, *)
 extension Point2D {
     public func asPath(pointDiameter: Double? = nil) -> Path {
         Path { path in
