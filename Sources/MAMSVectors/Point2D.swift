@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreGraphics
+import SwiftUI
 
 /// A traditional 2-dimensional point in a cartesian plane (CGPoint)
 public struct Point2D {
@@ -54,6 +55,26 @@ extension Point2D {
         if let y = y { newY = y }
 
         return Point2D(x: newX, y: newY)
+    }
+}
+
+// Connection to Core Graphics
+extension Point2D {
+    public func asPath(pointDiameter: Double? = nil) -> Path {
+        Path { path in
+            path.move(to: asCGPoint)
+
+            var finalDiameter: Double = 0
+            if let pointDiameter = pointDiameter {
+                finalDiameter = pointDiameter
+            }
+
+            // calculate putting point at center of circle
+            let radius = Vector2D(x: 1.0, y: 1.0).copy(magnitude: finalDiameter)
+
+            let circleRectangle = CGRect(origin: asCGPoint, size: CGSize(width: radius.x, height: radius.y))
+            path.addEllipse(in: circleRectangle)
+        }
     }
 }
 
