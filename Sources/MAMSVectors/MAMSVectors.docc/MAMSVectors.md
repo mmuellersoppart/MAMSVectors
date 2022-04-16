@@ -1,4 +1,4 @@
-# ``MAMSVector``
+# ``MAMSVectors``
 
 This package redefines many of the basic Core Graphics types with more functionality out of the box. 
 
