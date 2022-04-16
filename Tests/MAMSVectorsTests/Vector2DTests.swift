@@ -25,7 +25,35 @@ final class Vector2DTests: XCTestCase {
 
         let expectedXAndY = sqrt(0.5)
 
-        XCTAssertTrue(actualX.isEqual(to: expectedXAndY, precision: 4))
+        XCTAssertTrue(actualX.isEqual(to: expectedXAndY, precision: 4), "expected \(expectedXAndY) and got x: \(actualX) and y: \(actualY)")
+        XCTAssertTrue(actualY.isEqual(to: expectedXAndY, precision: 4))
+
+        XCTAssertTrue(vec.magnitude.isEqual(to: 1.0, precision: 6))
+    }
+
+    func testSetMagnitudeNegativeVector() throws {
+        var vec = Vector2D(x: -4, y: -4)
+        vec.magnitude = 1
+        let actualX = vec.x
+        let actualY = vec.y
+
+        let expectedXAndY = -sqrt(0.5)
+
+        XCTAssertTrue(actualX.isEqual(to: expectedXAndY, precision: 4), "expected \(expectedXAndY) and got x: \(actualX) and y: \(actualY)")
+        XCTAssertTrue(actualY.isEqual(to: expectedXAndY, precision: 4))
+
+        XCTAssertTrue(vec.magnitude.isEqual(to: 1.0, precision: 6))
+    }
+    
+    func testSetMagnitudeNegativeMagnitude() throws {
+        var vec = Vector2D(x: 4, y: 4)
+        vec.magnitude = -1
+        let actualX = vec.x
+        let actualY = vec.y
+
+        let expectedXAndY = -sqrt(0.5)
+
+        XCTAssertTrue(actualX.isEqual(to: expectedXAndY, precision: 4), "expected \(expectedXAndY) and got x: \(actualX) and y: \(actualY)")
         XCTAssertTrue(actualY.isEqual(to: expectedXAndY, precision: 4))
 
         XCTAssertTrue(vec.magnitude.isEqual(to: 1.0, precision: 6))

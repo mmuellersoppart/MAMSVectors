@@ -72,9 +72,10 @@ extension Point2D {
             }
 
             // calculate putting point at center of circle
-            let radius = Vector2D(x: 1.0, y: 1.0).copy(magnitude: finalDiameter)
+            var upperLeftVect = PositionalVector2D(origin: self, vector: Vector2D(x: -1.0, y: -1.0))
+            upperLeftVect.magnitude = finalDiameter / 2
 
-            let circleRectangle = CGRect(origin: asCGPoint, size: CGSize(width: radius.x, height: radius.y))
+            let circleRectangle = CGRect(origin: upperLeftVect.tip.asCGPoint, size: CGSize(width: finalDiameter, height: finalDiameter))
             path.addEllipse(in: circleRectangle)
         }
     }
