@@ -59,10 +59,10 @@ extension Point2D {
 }
 
 // Connection to Core Graphics
-@available(iOS 13.0, *)
+@available(iOS 15.0, *)
 @available(macOS 10.15, *)
 extension Point2D {
-    public func asPath(pointDiameter: Double = 5) -> Path {
+    public func asPath(pointDiameter: Double = 1) -> Path {
         Path { path in
             path.move(to: asCGPoint)
 
@@ -74,6 +74,7 @@ extension Point2D {
         }
     }
 
+    @available(iOS 15.0, *)
     public func draw(context: inout GraphicsContext) {
        let point2DPath = asPath()
         context.stroke(point2DPath, with: .color(.red))
