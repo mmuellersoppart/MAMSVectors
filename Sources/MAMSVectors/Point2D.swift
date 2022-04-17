@@ -71,11 +71,12 @@ extension Point2D {
                 finalDiameter = pointDiameter
             }
 
-            // calculate putting point at center of circle
-            var upperLeftVect = PositionalVector2D(origin: self, vector: Vector2D(x: -1.0, y: -1.0))
-            upperLeftVect.magnitude = finalDiameter / 2
+            let circleWidthAndHeight = finalDiameter
 
-            let circleRectangle = CGRect(origin: upperLeftVect.tip.asCGPoint, size: CGSize(width: finalDiameter, height: finalDiameter))
+            // find origin (upperLeftPoint)
+            let posVec = PositionalVector2D(origin: self, vector: Vector2D(x: -(circleWidthAndHeight / 2.0), y: -(circleWidthAndHeight / 2.0)))
+
+            let circleRectangle = CGRect(origin: posVec.tip.asCGPoint, size: CGSize(width: circleWidthAndHeight, height: circleWidthAndHeight))
             path.addEllipse(in: circleRectangle)
         }
     }
