@@ -62,23 +62,21 @@ extension Point2D {
 @available(iOS 13.0, *)
 @available(macOS 10.15, *)
 extension Point2D {
-    public func asPath(pointDiameter: Double? = nil) -> Path {
+    public func asPath(pointDiameter: Double = 5) -> Path {
         Path { path in
             path.move(to: asCGPoint)
 
-            var finalDiameter: Double = 0
-            if let pointDiameter = pointDiameter {
-                finalDiameter = pointDiameter
-            }
-
-            let circleWidthAndHeight = finalDiameter
-
             // find origin (upperLeftPoint)
-            let posVec = PositionalVector2D(origin: self, vector: Vector2D(x: -(circleWidthAndHeight / 2.0), y: -(circleWidthAndHeight / 2.0)))
+            let posVec = PositionalVector2D(origin: self, vector: Vector2D(x: -(pointDiameter / 2.0), y: -(pointDiameter / 2.0)))
 
-            let circleRectangle = CGRect(origin: posVec.tip.asCGPoint, size: CGSize(width: circleWidthAndHeight, height: circleWidthAndHeight))
+            let circleRectangle = CGRect(origin: posVec.tip.asCGPoint, size: CGSize(width: pointDiameter, height: pointDiameter))
             path.addEllipse(in: circleRectangle)
         }
+    }
+
+    public func draw(context: inout GraphicsContext) {
+       let point2DPath = asPath()
+        context.stroke(point2DPath, with: .color(.red))
     }
 }
 
