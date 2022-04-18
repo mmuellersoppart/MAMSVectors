@@ -4,6 +4,7 @@
 
 import Foundation
 import CoreGraphics
+import SwiftUI
 
 /// A 2-dimensional vector (CGVector)
 public struct Vector2D {
@@ -52,11 +53,30 @@ extension Vector2D {
     }
 }
 
-// Connection with SwiftUI
-@available(iOS 15.0, *)
-@available(macOS 10.15, *)
-extension Vector2D {
 
+// Connection to Core Graphics
+@available(iOS 15.0, *)
+@available(macOS 15.0, *)
+extension Vector2D {
+    public func asPath(startPoint: Point2D) -> Path {
+        Path { path in
+            path.move(to: startPoint.asCGPoint)
+            path.addLine(to: (startPoint + self).asCGPoint)
+        }
+    }
+
+    public func asPath(startPoint: Path) -> Path {
+        Path { path in
+            let lastPoint = startPoint.currentPoint?.asPoint2D ?? Point2D(x: 0.0, y: 0.0)
+            path.move(to: lastPoint.asCGPoint)
+            path.addLine(to: (lastPoint + self).asCGPoint)
+        }
+    }
+
+    public func draw(startPoint: Point2D, context: inout GraphicsContext) {
+        let vector2DPath = asPath(startPoint: startPoint)
+        context.stroke(vector2DPath, with: .color(.red))
+    }
 }
 
 extension Vector2D {

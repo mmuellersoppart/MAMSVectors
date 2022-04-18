@@ -3,6 +3,8 @@
 //
 
 import Foundation
+import CoreGraphics
+import SwiftUI
 
 /// A Vector2D that can be placed in a cartesian plane
 public struct PositionalVector2D {
@@ -53,6 +55,23 @@ extension PositionalVector2D : Equatable {
     }
 }
 
+
+// Connection to Core Graphics
+@available(iOS 15.0, *)
+@available(macOS 15.0, *)
+extension PositionalVector2D {
+    public func asPath() -> Path {
+        Path { path in
+            path.move(to: origin.asCGPoint)
+            path.addLine(to: tip.asCGPoint)
+        }
+    }
+
+    public func draw(context: inout GraphicsContext) {
+        let positionalVector2DPath = asPath()
+        context.stroke(positionalVector2DPath, with: .color(.red))
+    }
+}
 
 extension PositionalVector2D {
 
