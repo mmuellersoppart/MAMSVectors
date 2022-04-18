@@ -60,8 +60,22 @@ extension Point2D {
 
 // Connection to Core Graphics
 @available(iOS 15.0, *)
-@available(macOS 10.15, *)
+@available(macOS 12.0, *)
 extension Point2D {
+
+    /// Convert Point2D into a path that can be used within swiftUI's canvas
+    ///
+    /// A simple use case
+    /// ```
+    /// canvas { context, size in
+    ///     let pt = Point2D(x: 1, y: 1)
+    ///     let path = pt.asPath(pointDiameter = 2)
+    ///     context.stroke(path, with: Color(.green))
+    /// }
+    /// ```
+    ///
+    /// - Parameter pointDiameter: The diameter of the circle that surrounds the point
+    /// - Returns: A Path
     public func asPath(pointDiameter: Double = 1) -> Path {
         Path { path in
             path.move(to: asCGPoint)
@@ -74,7 +88,15 @@ extension Point2D {
         }
     }
 
-    @available(iOS 15.0, *)
+    /// Allows the instances of Point2D to draw itself with a default configuration.
+    ///
+    /// A simple use case
+    /// ```
+    /// canvas { context, size in
+    ///     let pt = Point2D(x: 1, y: 1)
+    ///     pt.draw(context: context)
+    /// }
+    /// ```
     public func draw(context: inout GraphicsContext) {
        let point2DPath = asPath()
         context.stroke(point2DPath, with: .color(.red))

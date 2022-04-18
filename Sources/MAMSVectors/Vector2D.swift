@@ -53,6 +53,11 @@ extension Vector2D {
 }
 
 // Connection with SwiftUI
+@available(iOS 15.0, *)
+@available(macOS 10.15, *)
+extension Vector2D {
+
+}
 
 extension Vector2D {
 
