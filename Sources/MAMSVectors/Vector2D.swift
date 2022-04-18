@@ -57,15 +57,16 @@ extension Vector2D {
 // Connection to Core Graphics
 @available(iOS 15.0, *)
 @available(macOS 15.0, *)
-extension Point2D {
-    public func asPath() -> Path {
+extension Vector2D {
+    public func asPath(startPoint: Point2D) -> Path {
         Path { path in
-            path.addLine(to: asCGPoint)
+            path.move(to: startPoint.asCGPoint)
+            path.addLine(to: (startPoint + self).asCGPoint)
         }
     }
 
-    public func draw(context: inout GraphicsContext) {
-        let vector2DPath = asPath()
+    public func draw(startPoint: Point2D, context: inout GraphicsContext) {
+        let vector2DPath = asPath(startPoint: startPoint)
         context.stroke(vector2DPath, with: .color(.red))
     }
 }
