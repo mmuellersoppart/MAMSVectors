@@ -52,8 +52,15 @@ extension Vector2D {
     }
 }
 
+// Connection with SwiftUI
+
 extension Vector2D {
-    
+
+    /// Functional way to adjust a value in the vector
+    /// - Parameters:
+    ///   - x: x
+    ///   - y: y
+    /// - Returns: A new Vector2D with any adjustments
     public func copy(x: Double?, y: Double?) -> Vector2D {
 
         var newX = self.x
@@ -65,6 +72,10 @@ extension Vector2D {
         return Vector2D(x: newX, y: newY)
     }
 
+    /// A functional way to change the magnitude of a function
+    ///
+    /// - Parameter magnitude: how long the vector should be
+    /// - Returns: A new vector with the same ratio between x/y but has a new magnitude
     public func copy(magnitude: Double) -> Vector2D {
         
         let xSign: Double = x >= 0.0 ? 1.0 : -1.0
@@ -82,6 +93,8 @@ extension Vector2D {
 }
 
 extension CGVector {
+
+    /// Convect CGVector to Vector2D
     public var asVector2D: Vector2D {
         Vector2D(x: dx, y: dy)
     }
