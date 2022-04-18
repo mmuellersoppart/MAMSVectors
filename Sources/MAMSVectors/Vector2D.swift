@@ -65,6 +65,14 @@ extension Vector2D {
         }
     }
 
+    public func asPath(startPoint: Path) -> Path {
+        Path { path in
+            let lastPoint = startPoint.currentPoint?.asPoint2D ?? Point2D(x: 0.0, y: 0.0)
+            path.move(to: lastPoint.asCGPoint)
+            path.addLine(to: (lastPoint + self).asCGPoint)
+        }
+    }
+
     public func draw(startPoint: Point2D, context: inout GraphicsContext) {
         let vector2DPath = asPath(startPoint: startPoint)
         context.stroke(vector2DPath, with: .color(.red))
