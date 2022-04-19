@@ -6,9 +6,9 @@ This package redefines many of the basic Core Graphics types with more functiona
 
 Three types are included.
 
-* `Point2D` (`CGPoint`)
-* `Vector2D` (`CGVector`)
-* `PositionalVector2D` (a combination of `CGPoint` and `CGVector`)
+* ``Point2D`` (`CGPoint`)
+* ``Vector2D`` (`CGVector`)
+* ``PositionalVector2D`` (a combination of `CGPoint` and `CGVector`)
 
 [image of option]
 

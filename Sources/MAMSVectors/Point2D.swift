@@ -9,7 +9,43 @@ import Foundation
 import CoreGraphics
 import SwiftUI
 
-/// A traditional 2-dimensional point in a cartesian plane (CGPoint)
+/**
+A traditional 2-dimensional point in a cartesian plane (CGPoint)
+ 
+Example of use
+```swift
+import SwiftUI
+import MAMSVectors
+
+struct Point2DExample: View {
+    var body: some View {
+        ZStack {
+            Canvas { context, size in
+                // draw grid
+                for y in stride(from: 0, to: size.height, by: 20) {
+                    for x in stride(from: 0, to: size.width, by: 20) {
+                        Point2D(x: Double(x), y: Double(y)).draw(context: &context)
+                    }
+                }
+                // draw blue dot
+                let ptPath = Point2D(x: 60, y: 60).asPath(pointDiameter: 10)
+                context.fill(ptPath, with: .color(.blue))
+            }
+            // draw green frame
+            Rectangle().stroke(Color(.green))
+        }.frame(width: 200, height: 200)
+    }
+}
+
+struct Point2DExample_Previews: PreviewProvider {
+    static var previews: some View {
+        Point2DExample()
+    }
+}
+```
+ 
+ ![Example of Points](Point2D.png)
+ */
 public struct Point2D {
     public var x: Double
     public var y: Double
