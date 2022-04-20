@@ -71,6 +71,24 @@ extension PositionalVector2D {
         let positionalVector2DPath = asPath()
         context.stroke(positionalVector2DPath, with: .color(.red))
     }
+    
+    internal static func arrowHeadPath(positionalVector: PositionalVector2D) -> Path {
+        return Path { path in
+            let headBase = (0.9 * positionalVector).tip
+            
+            var arrowHead1 = (0.05 * positionalVector)
+            arrowHead1.vector = Vector2D(x: arrowHead1.vector.y, y: arrowHead1.vector.x) // perpendicular
+            arrowHead1 = PositionalVector2D(point: headBase, vector: arrowHead1.vector)
+            
+            path.move(to: arrowHead1.tip.asCGPoint)
+            path.addLine(to: positionalVector.tip.asCGPoint)
+            
+            arrowHead1 = PositionalVector2D(point: headBase, vector: (-1.0 * arrowHead1).vector)
+            
+            path.move(to: arrowHead1.tip.asCGPoint)
+            path.addLine(to: positionalVector.tip.asCGPoint)
+        }
+    }
 }
 
 extension PositionalVector2D {

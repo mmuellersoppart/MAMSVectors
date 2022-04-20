@@ -63,39 +63,23 @@ extension Vector2D {
             path.move(to: startPoint.asCGPoint)
             path.addLine(to: (startPoint + self).asCGPoint)
             
-            let posVec = PositionalVector2D(point: startPoint, vector: self)
-            
-            // draw head
-            let headBase = (0.9 * posVec).tip
-            
-            var arrowHead1 = (0.05 * posVec)
-            arrowHead1.vector = Vector2D(x: arrowHead1.vector.y, y: arrowHead1.vector.x) // perpendicular
-            arrowHead1 = PositionalVector2D(point: headBase, vector: arrowHead1.vector)
-            
-            path.move(to: arrowHead1.tip.asCGPoint)
-            path.addLine(to: posVec.tip.asCGPoint)
-            
-            arrowHead1 = PositionalVector2D(point: headBase, vector: (-1.0 * arrowHead1).vector)
-            
-            path.move(to: arrowHead1.tip.asCGPoint)
-            path.addLine(to: posVec.tip.asCGPoint)
-            
-            
-            
+            if hasArrowhead {
+                let posVec = PositionalVector2D(point: startPoint, vector: self)
+                let arrowHeadPath = PositionalVector2D.arrowHeadPath(positionalVector: posVec)
+                path.addPath(arrowHeadPath)
             }
-        }
+    }
+    }
 
     
     /// Create a path that starts at the last point fo the startPath path
     /// - Parameter startPath: The previous path to build off on
     /// - Returns: A new path that used startPath as a starting point
-    public func asPath(startPath: Path, hasArrowhead: Bool) -> Path {
+    public func asPath(startPath: Path, hasArrowhead: Bool = true) -> Path {
         Path { path in
             // draw line
             let lastPoint = startPath.currentPoint?.asPoint2D ?? Point2D(x: 0.0, y: 0.0)
-            path.move(to: lastPoint.asCGPoint)
-            path.addLine(to: (lastPoint + self).asCGPoint)
-            
+            path.addPath(self.asPath(startPoint: lastPoint))
         }
     }
 
