@@ -65,9 +65,13 @@ extension Vector2D {
         }
     }
 
-    public func asPath(startPoint: Path) -> Path {
+    
+    /// Create a path that starts at the last point fo the startPath path
+    /// - Parameter startPath: The previous path to build off on
+    /// - Returns: A new path that used startPath as a starting point
+    public func asPath(startPath: Path) -> Path {
         Path { path in
-            let lastPoint = startPoint.currentPoint?.asPoint2D ?? Point2D(x: 0.0, y: 0.0)
+            let lastPoint = startPath.currentPoint?.asPoint2D ?? Point2D(x: 0.0, y: 0.0)
             path.move(to: lastPoint.asCGPoint)
             path.addLine(to: (lastPoint + self).asCGPoint)
         }
