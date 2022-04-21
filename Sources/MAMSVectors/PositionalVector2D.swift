@@ -22,7 +22,7 @@ public struct PositionalVector2D {
 
     /// returns a vector perpendicular to the original with the same base
     public var perpendicular: PositionalVector2D {
-        PositionalVector2D(originX: origin.x, originY: origin.y, vectorX: vector.y, vectorY: vector.x)
+        PositionalVector2D(originX: origin.x, originY: origin.y, vectorX: -vector.x, vectorY: vector.y)
     }
 
     /// how long the vector is. This can be set but this changes the x and y value of the vector.

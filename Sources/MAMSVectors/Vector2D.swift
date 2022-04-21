@@ -27,6 +27,10 @@ public struct Vector2D {
             y = newVector.y
         }
     }
+    
+    public var perpendicular: Vector2D {
+        Vector2D(x: -x, y: y)
+    }
 
     public var normalized: Vector2D {
         let currMagnitude = magnitude
