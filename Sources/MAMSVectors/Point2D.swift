@@ -63,7 +63,7 @@ public struct Point2D {
     }
 }
 
-extension Point2D {
+extension Point2D: Drawable {
     
     
     /// Gives the distance between two points (L2 norm)
@@ -158,3 +158,4 @@ extension CGPoint {
         Point2D(x: x, y: y)
     }
 }
+

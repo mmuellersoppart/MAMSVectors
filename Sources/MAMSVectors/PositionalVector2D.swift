@@ -7,7 +7,7 @@ import CoreGraphics
 import SwiftUI
 
 /// A Vector2D that can be placed in a cartesian plane
-public struct PositionalVector2D {
+public struct PositionalVector2D: Drawable {
 
     /// Where the vector starts
     public var origin: Point2D
