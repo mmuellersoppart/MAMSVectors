@@ -22,7 +22,7 @@ public struct PositionalVector2D {
 
     /// returns a vector perpendicular to the original with the same base
     public var perpendicular: PositionalVector2D {
-        PositionalVector2D(originX: origin.x, originY: origin.y, vectorX: -vector.x, vectorY: vector.y)
+        PositionalVector2D(originX: origin.x, originY: origin.y, vectorX: -vector.y, vectorY: vector.x)
     }
 
     /// how long the vector is. This can be set but this changes the x and y value of the vector.
@@ -60,10 +60,15 @@ extension PositionalVector2D : Equatable {
 @available(iOS 15.0, *)
 @available(macOS 15.0, *)
 extension PositionalVector2D {
-    public func asPath() -> Path {
+    public func asPath(withArrowHead: Bool = true) -> Path {
         Path { path in
             path.move(to: origin.asCGPoint)
             path.addLine(to: tip.asCGPoint)
+            
+            if withArrowHead{
+                let arrowHeadPath = self.arrowHeadPath()
+                path.addPath(arrowHeadPath)
+            }
         }
     }
 
@@ -72,21 +77,20 @@ extension PositionalVector2D {
         context.stroke(positionalVector2DPath, with: .color(.red))
     }
     
-    internal static func arrowHeadPath(positionalVector: PositionalVector2D) -> Path {
+    public func arrowHeadPath() -> Path {
         return Path { path in
-            let headBase = (0.9 * positionalVector).tip
+            let headBase = (0.9 * self).tip
+
+            var miniPerp = 0.05 * self.perpendicular
+            miniPerp.origin = headBase
             
-            var arrowHead1 = (0.05 * positionalVector)
-            arrowHead1.vector = Vector2D(x: arrowHead1.vector.y, y: arrowHead1.vector.x) // perpendicular
-            arrowHead1 = PositionalVector2D(point: headBase, vector: arrowHead1.vector)
+            // draw the lines
+            path.move(to: miniPerp.tip.asCGPoint)
+            path.addLine(to: self.tip.asCGPoint)
             
-            path.move(to: arrowHead1.tip.asCGPoint)
-            path.addLine(to: positionalVector.tip.asCGPoint)
-            
-            arrowHead1 = PositionalVector2D(point: headBase, vector: (-1.0 * arrowHead1).vector)
-            
-            path.move(to: arrowHead1.tip.asCGPoint)
-            path.addLine(to: positionalVector.tip.asCGPoint)
+            miniPerp = -1.0 * miniPerp
+            path.move(to: miniPerp.tip.asCGPoint)
+            path.addLine(to: self.tip.asCGPoint)
         }
     }
 }

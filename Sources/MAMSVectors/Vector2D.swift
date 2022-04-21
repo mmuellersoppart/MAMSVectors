@@ -29,7 +29,7 @@ public struct Vector2D {
     }
     
     public var perpendicular: Vector2D {
-        Vector2D(x: -x, y: y)
+        Vector2D(x: -y, y: x)
     }
 
     public var normalized: Vector2D {
@@ -69,7 +69,7 @@ extension Vector2D {
             
             if hasArrowhead {
                 let posVec = PositionalVector2D(point: startPoint, vector: self)
-                let arrowHeadPath = PositionalVector2D.arrowHeadPath(positionalVector: posVec)
+                let arrowHeadPath = posVec.arrowHeadPath()
                 path.addPath(arrowHeadPath)
             }
     }
