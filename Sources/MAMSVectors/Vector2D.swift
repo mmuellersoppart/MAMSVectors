@@ -6,7 +6,63 @@ import Foundation
 import CoreGraphics
 import SwiftUI
 
-/// A 2-dimensional vector (CGVector)
+/**
+A 2-dimensional vector (CGVector)
+ 
+Example of use
+```swift
+ import SwiftUI
+ import MAMSVectors
+ 
+ struct Vector2DExample: View {
+     let scale: Double = 0.6
+     
+     var body: some View {
+         ZStack {
+             Canvas { context, size in
+                 
+                 let centerPoint = Point2D(x: size.width / 2, y: size.height / 2)
+                 
+                 // vectors of triangle
+                 let v1 = Vector2D(x: 30, y: -30) // blue
+                 let v2 = Vector2D(x: -36, y: -40) // blue
+                 let v3 = v1 + v2 // orange
+                 
+                 // draw vectors
+                 let v1Path = v1.asPath(startPoint: centerPoint, hasArrowhead: true)
+                 print(v1Path.description)
+                 context.stroke(v1Path, with: .color(.blue))
+                 let v2Path = v2.asPath(startPath: v1Path)
+                 context.stroke(v2Path, with: .color(.blue))
+                 let v3Path = v3.asPath(startPoint: centerPoint)
+                 context.stroke(v3Path, with: .color(.orange))
+                 
+                 // similar but different (smaller bottom triangle)
+                 let v1_1 = -scale * v1
+                 let v2_1 = -scale * v2
+                 let v3_1 = -scale * v3
+
+                 // draw vectors
+                 let v1_1Path = v1_1.asPath(startPoint: centerPoint)
+                 context.stroke(v1_1Path, with: .color(.blue))
+                 let v2_1Path = v2_1.asPath(startPath: v1_1Path)
+                 context.stroke(v2_1Path, with: .color(.blue))
+                 let v3_1Path = v3_1.asPath(startPoint: centerPoint)
+                 context.stroke(v3_1Path, with: .color(.orange))
+
+                 // draw center point
+                 let centerPointPath = centerPoint.asPath(pointDiameter: 5)
+                 context.fill(centerPointPath, with: .color(.red))
+             }
+             // draw green frame
+             Rectangle().stroke(Color(.green))
+         }.frame(width: 200, height: 200)
+     }
+ }
+```
+ 
+ ![Example of Vector2D](Vector2D.png)
+ */
 public struct Vector2D {
     public var x: Double
     public var y: Double
