@@ -47,6 +47,11 @@ extension PositionalVector2D {
         origin = point
         self.vector = vector
     }
+    
+    public init(start: Point2D, end: Point2D) {
+        origin = start
+        vector = Vector2D(x: end.x - start.x, y: end.y - start.y)
+    }
 }
 
 extension PositionalVector2D : Equatable {
@@ -63,8 +68,16 @@ extension PositionalVector2D {
     public func asPath(withArrowHead: Bool = true) -> Path {
         Path { path in
             path.move(to: origin.asCGPoint)
+            
+            // draw point
+            path = origin.asPath(pointDiameter: 3)
+            path.addPath(path)
+            path.move(to: origin.asCGPoint)
+            
+            // draw trunk of vector
             path.addLine(to: tip.asCGPoint)
             
+            // maybe draw arrow head
             if withArrowHead{
                 let arrowHeadPath = self.arrowHeadPath()
                 path.addPath(arrowHeadPath)
