@@ -150,7 +150,7 @@ extension Vector2D {
         }
     }
 
-    /// Vector draws itself in SwiftUI's Canvas, but doesn't fullfill Drawable protocol because startPoint must also be provided. 
+    /// Vector draws itself in SwiftUI's Canvas, but doesn't fullfill Drawable protocol because startPoint must also be provided.
     public func draw(startPoint: Point2D, context: inout GraphicsContext) {
         let vector2DPath = asPath(startPoint: startPoint, hasArrowhead: true)
         context.stroke(vector2DPath, with: .color(.red))

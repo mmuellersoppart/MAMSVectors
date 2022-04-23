@@ -10,6 +10,8 @@ Three types are included.
 * ``Vector2D`` (`CGVector`)
 * ``PositionalVector2D`` (a combination of `CGPoint` and `CGVector`)
 
+![Example of Points](OverviewPicture.png)
+
 Main benefits of this package are
 
 * Basic operators are defined. e.g. `+`, `*`, `==`
