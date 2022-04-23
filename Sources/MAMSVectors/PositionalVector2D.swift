@@ -83,7 +83,7 @@ public struct PositionalVector2D: Drawable {
         PositionalVector2D(originX: origin.x, originY: origin.y, vectorX: -vector.y, vectorY: vector.x)
     }
 
-    /// how long the vector is. This can be set but this changes the x and y value of the vector.
+    /// How long the vector is. Warning! When this is set the x and y values of the vector change too (understandably).
     public var magnitude: Double {
         get {
             vector.magnitude
@@ -123,6 +123,8 @@ extension PositionalVector2D : Equatable {
 @available(iOS 15.0, *)
 @available(macOS 15.0, *)
 extension PositionalVector2D {
+    
+    /// Provides a path for the origin, the trunk of the vector, and optionally the arrow head.
     public func asPath(withArrowHead: Bool = true) -> Path {
         Path { path in
             path.move(to: origin.asCGPoint)
@@ -143,11 +145,13 @@ extension PositionalVector2D {
         }
     }
 
+    /// Draws the Positional Vector at default specifications
     public func draw(context: inout GraphicsContext) {
         let positionalVector2DPath = asPath()
         context.stroke(positionalVector2DPath, with: .color(.red))
     }
     
+    /// Provides a path for the proportionally sized arrow head. 
     internal func arrowHeadPath() -> Path {
         return Path { path in
             let headBase = (0.9 * self).tip

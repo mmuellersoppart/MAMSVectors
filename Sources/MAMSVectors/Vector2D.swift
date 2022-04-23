@@ -7,7 +7,7 @@ import CoreGraphics
 import SwiftUI
 
 /**
-A 2-dimensional vector (CGVector)
+A 2-dimensional vector (CGVector).
  
 Example of use
 ```swift
@@ -118,6 +118,13 @@ extension Vector2D {
 @available(iOS 15.0, *)
 @available(macOS 15.0, *)
 extension Vector2D {
+    
+    
+    /// Provides a path that represents the vector.
+    /// - Parameters:
+    ///   - startPoint: The origin of the vector, where to start drawing the vector.
+    ///   - hasArrowhead: Should the arrowhead be drawn.
+    /// - Returns: Path
     public func asPath(startPoint: Point2D, hasArrowhead: Bool = true) -> Path {
         Path { path in
             path.move(to: startPoint.asCGPoint)
@@ -133,7 +140,7 @@ extension Vector2D {
 
     
     /// Create a path that starts at the last point fo the startPath path
-    /// - Parameter startPath: The previous path to build off on
+    /// - Parameter startPath: The previous path to build off on.
     /// - Returns: A new path that used startPath as a starting point
     public func asPath(startPath: Path, hasArrowhead: Bool = true) -> Path {
         Path { path in
@@ -143,6 +150,7 @@ extension Vector2D {
         }
     }
 
+    /// Vector draws itself in SwiftUI's Canvas, but doesn't fullfill Drawable protocol because startPoint must also be provided. 
     public func draw(startPoint: Point2D, context: inout GraphicsContext) {
         let vector2DPath = asPath(startPoint: startPoint, hasArrowhead: true)
         context.stroke(vector2DPath, with: .color(.red))

@@ -1,6 +1,6 @@
 # ``MAMSVectors``
 
-This package redefines many of the basic Core Graphics types with more functionality out of the box.  
+This package redefines a few Core Graphics types for SwiftUI's canvas.
 
 ## Overview
 
@@ -10,12 +10,12 @@ Three types are included.
 * ``Vector2D`` (`CGVector`)
 * ``PositionalVector2D`` (a combination of `CGPoint` and `CGVector`)
 
-[image of option]
+Main benefits of this package are
 
-The main additions are
+* Basic operators are defined. e.g. `+`, `*`, `==`
+* Both Imperative and Functional programming options available for many operations.
+* ``Point2D`` and ``PositionalVector2D`` can draw themselves for easy debugging with the ``Drawable`` protocol. 
+* Clearly laid out DocC Documentation with example use cases.
 
-* Operators e.g. `+`, `*`, `==`
-* Imperative and functional programming options
-* Elements know how to draw themselves in SwiftUI
 
 
