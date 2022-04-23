@@ -6,7 +6,65 @@ import Foundation
 import CoreGraphics
 import SwiftUI
 
-/// A Vector2D that can be placed in a cartesian plane
+/**
+A ``Vector2D`` that knows its position, ``Point2D``.
+ 
+Example of use
+```swift
+ import SwiftUI
+ import MAMSVectors
+
+ struct PositionalVector2DExample: View {
+     @State var radians: Double = 0.0
+     
+     var body: some View {
+         VStack {
+             ZStack {
+                 Canvas { context, size in
+                     // create starting positional vector
+                     let centerPt = Point2D(x: size.width/2, y: size.height/2)
+                     let posVec = PositionalVector2D(point: centerPt, vector: Vector2D(x: 0, y: -30))
+                     
+                     // actual positional vector on the screen
+                     let posVec1 = posVec.copy(radians: radians)
+                     posVec1.draw(context: &context)
+                     
+                     // green box
+                     let xBoundaries = [0.0, Double(size.width)]
+                     let yBoundaries = [0.0, Double(size.height)]
+                     
+                     // find the closest point
+                     var points: [Point2D?] = []
+                     for xBound in xBoundaries {
+                         points.append(posVec1.intercept(x: xBound))
+                     }
+                     
+                     for yBound in yBoundaries {
+                         points.append(posVec1.intercept(y: yBound))
+                     }
+                     
+                     let closestPoint = points.compactMap{$0}.sorted(by: {lhs, rhs in centerPt.distance(to: lhs) < centerPt.distance(to: rhs)}).first
+                     
+                     // draw point of intersection (double circle)
+                     let closestPointPath = closestPoint!.asPath(pointDiameter: 25)
+                     let closestPointInnerPath = closestPoint!.asPath(pointDiameter:5)
+                     context.stroke(closestPointPath, with: .color(.orange))
+                     context.fill(closestPointInnerPath, with: .color(.red))
+                 }
+                 // draw green frame
+                 Rectangle().stroke(Color(red: 0, green: 255, blue: 0, opacity: 0.5))
+             }
+             Slider(
+                 value: $radians,
+                 in: 0...(4 * Double.pi)
+             )
+         }.frame(width: 200, height: 200)
+     }
+ }
+```
+ 
+ ![Example of Points](PositionalVector2D.png)
+ */
 public struct PositionalVector2D: Drawable {
 
     /// Where the vector starts
