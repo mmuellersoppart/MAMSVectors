@@ -90,7 +90,7 @@ extension PositionalVector2D {
         context.stroke(positionalVector2DPath, with: .color(.red))
     }
     
-    public func arrowHeadPath() -> Path {
+    internal func arrowHeadPath() -> Path {
         return Path { path in
             let headBase = (0.9 * self).tip
 
@@ -121,6 +121,19 @@ extension PositionalVector2D {
         return PositionalVector2D(origin: origin, vector: vector)
     }
 
+    /// Made for more functional style of programming. Rotates the vector.
+    ///
+    /// $$x_2 = \cos{\beta x_1} - \sin{\beta y_1} \newline y_2 = \sin{\beta x_1} + \cos{\beta y_1}$$
+    ///
+    /// - Parameter radians: How much rotation should take place. 0 - 2π is one full rotation
+    /// - Returns: A new PositionalVector where the magnitude is the same but it's rotated
+    public func copy(radians: Double) -> PositionalVector2D {
+        let newX: Double = vector.x * cos(radians) - vector.y * sin(radians)
+        let newY: Double = vector.x * sin(radians) + vector.y * cos(radians)
+
+        return PositionalVector2D(origin: Point2D(x: origin.x, y: origin.y), vector: Vector2D(x: newX, y: newY))
+    }
+
     /// Made for more functional style of programming.
     /// - Parameters:
     ///   - originX: adjust the x value of the origin
@@ -145,8 +158,9 @@ extension PositionalVector2D {
         return PositionalVector2D(originX: newOriginX, originY: newOriginY, vectorX: newVectorX, vectorY: newVectorY)
     }
 
-    /// Find when the position vector intercepts the given x value
+    /// Find when the position vector intercepts the given x value. It does not check in the negative direction.
     /// - Parameter xTarget: x value in a cartesian plane
+    /// - Returns: ``Point2D``, where the vector intercepts the inputted x value.
     public func intercept(x xTarget: Double) -> Point2D? {
 
         // determine distance from vector start to x
@@ -160,6 +174,9 @@ extension PositionalVector2D {
         return Point2D(x: xTarget, y: origin.y + (scaleToX * vector.y))
     }
 
+    /// Find when the position vector intercepts the given y value. It does not check in the negative direction.
+    /// - Parameter yTarget: y value in a cartesian plane
+    /// - Returns: ``Point2D``, where the vector intercepts the inputted y value.
     public func intercept(y yTarget: Double) -> Point2D? {
         
         // determine distance from vector start to target
