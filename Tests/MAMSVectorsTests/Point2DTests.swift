@@ -23,7 +23,7 @@ final class Point2DTests: XCTestCase {
         let pt1 = Point2D(x: .zero, y: .zero)
         let pt2 = Point2D(x: 4, y: 5)
 
-        let expected = 16.0 + 25.0
+        let expected = sqrt(16.0 + 25.0)
         let actual = pt1.distance(to: pt2)
 
         XCTAssertEqual(expected, actual)
