@@ -73,7 +73,7 @@ extension Point2D: Drawable {
         let xDist = point.x - x
         let yDist = point.y - y
         
-        return (xDist * xDist) + (yDist * yDist)
+        return sqrt((xDist * xDist) + (yDist * yDist))
     }
     
     /// Creates a copy of a point. A user may want to change member variables and those values
