@@ -159,3 +159,8 @@ extension CGPoint {
     }
 }
 
+extension CGSize {
+    public var asSize2D: Point2D {
+        Point2D(x: Double(width), y: Double(height))
+    }
+}
