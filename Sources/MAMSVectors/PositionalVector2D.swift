@@ -120,8 +120,6 @@ extension PositionalVector2D : Equatable {
 
 
 // Connection to Core Graphics
-@available(iOS 15.0, *)
-@available(macOS 15.0, *)
 extension PositionalVector2D {
     
     /// Provides a path for the origin, the trunk of the vector, and optionally the arrow head.

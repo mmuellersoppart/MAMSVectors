@@ -95,8 +95,6 @@ extension Point2D: Drawable {
 }
 
 // Connection to Core Graphics
-@available(iOS 15.0, *)
-@available(macOS 15.0, *)
 extension Point2D {
 
     /// Convert Point2D into a path that can be used within swiftUI's canvas

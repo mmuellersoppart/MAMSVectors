@@ -24,9 +24,6 @@ public func *(left: Double, right: Vector2D) -> Vector2D {
     Vector2D(x: right.x * left, y: right.y * left)
 }
 
-// Convenience function
-@available(iOS 15.0, *)
-@available(macOS 15.0, *)
 extension Collection where Element: Drawable {
     /// Draw all the ``Drawable`` elements in a collection
     public func draw(context: inout GraphicsContext) {

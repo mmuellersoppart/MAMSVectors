@@ -115,8 +115,6 @@ extension Vector2D {
 
 
 // Connection to Core Graphics
-@available(iOS 15.0, *)
-@available(macOS 15.0, *)
 extension Vector2D {
     
     
