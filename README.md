@@ -1,6 +1,6 @@
 # MAMSVectors
 
-A package that redefines a few Core Graphics types for SwiftUI's canvas.
+A vector package that redefines a few Core Graphics types for SwiftUI's canvas. 
 
 ## Overview
 
